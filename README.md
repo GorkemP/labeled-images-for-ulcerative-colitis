@@ -1,2 +1,3 @@
-# labeled-images-for-ulcerative-colitis
- Codes to process and train LIMUC dataset
+# LIMUC (Labeled Images for Ulcerative Colitis) Dataset processing and training repository
+ 
+
