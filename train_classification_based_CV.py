@@ -13,7 +13,6 @@ from utils.metrics import get_mean_sensitivity_specificity, classification_repor
 from utils import provider
 from utils.provider import get_test_results_classification, setup_reproducability, get_dataset_mean_and_std, \
     write_metric_results_to_file, get_batch_size_for_model
-from utils.losses import ClassDistanceWeightedLoss
 
 setup_reproducability(35)
 
@@ -34,8 +33,6 @@ use_multiGPU = False
 enable_wandb = True
 use_weighted_sampler = True
 pretrained_weights = True
-enable_custom_loss = True
-custom_loss_power = 10
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print("device: ", device)
@@ -124,11 +121,7 @@ def get_test_set_results(id, test_dir, normalize):
                                               pin_memory=True)
 
     model = provider.initialize_model(model_name, False, num_classes)
-    if enable_custom_loss:
-        model.load_state_dict(
-                torch.load("weights/best_CL_" + str(custom_loss_power) + "_" + model_name + '_' + str(id) + '.pth.tar'))
-    else:
-        model.load_state_dict(torch.load("weights/best_" + model_name + '_' + str(id) + '.pth.tar'))
+    model.load_state_dict(torch.load("weights/best_" + model_name + '_' + str(id) + '.pth.tar'))
     model.to(device)
 
     y_true, y_probs, y_pred, r_true, r_probs, r_pred = get_test_results_classification(model, test_loader, device,
@@ -202,10 +195,7 @@ def run_experiment(experiment_id: int, train_dir: str, val_dir: str, normalize, 
                                                    threshold=best_threshold,
                                                    verbose=False)
 
-    if enable_custom_loss:
-        criterion = ClassDistanceWeightedLoss(num_classes, custom_loss_power)
-    else:
-        criterion = nn.CrossEntropyLoss()
+    criterion = nn.CrossEntropyLoss()
 
     for epoch in range(num_epoch):
 
@@ -231,12 +221,8 @@ def run_experiment(experiment_id: int, train_dir: str, val_dir: str, normalize, 
             best_acc = val_accuracy
             if enable_wandb:
                 wandb.run.summary["best accuracy"] = best_acc
-            if enable_custom_loss:
-                torch.save(model.state_dict(),
-                           "weights/best_CL_" + str(custom_loss_power) + "_" + model_name + '_' + str(
-                                   experiment_id) + '.pth.tar')
-            else:
-                torch.save(model.state_dict(), "weights/best_" + model_name + '_' + str(experiment_id) + '.pth.tar')
+
+            torch.save(model.state_dict(), "weights/best_" + model_name + '_' + str(experiment_id) + '.pth.tar')
         else:
             early_stop_counter += 1
 
@@ -301,8 +287,6 @@ if __name__ == "__main__":
             config.bs = batch_size
             config.num_worker = num_worker
             config.optimizer = optimizer_name
-            config.DWLoss = enable_custom_loss
-            config.DWLoss_power = custom_loss_power
 
         train_dir = os.path.join(CV_fold_path, CV_fold_folders[i], "train")
         val_dir = os.path.join(CV_fold_path, CV_fold_folders[i], "val")
