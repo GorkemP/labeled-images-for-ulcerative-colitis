@@ -3,7 +3,6 @@
 
 import torch
 import torchvision.transforms as transforms
-import torchvision.models as models
 
 from dataset.ucmayo4 import UCMayo4
 from utils.metrics import get_mean_sensitivity_specificity
