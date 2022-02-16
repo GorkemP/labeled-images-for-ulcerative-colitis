@@ -10,9 +10,10 @@ parser = argparse.ArgumentParser(description="This files generates Cross-validat
                                              ".json files. Use it to make objective evaluations \n"
                                              "and fair comparisons with the results in the dataset.")
 
-parser.add_argument("json_folder", help="Root folder path of the json files")
-parser.add_argument("train_val_folder", help="Path of train folder as downloaded from the dataset repository")
-parser.add_argument("output_folder",
+parser.add_argument("--json_folder", type=str, required=True, help="Root folder path of the json files")
+parser.add_argument("--train_val_folder", type=str, required=True,
+                    help="Path of train folder as downloaded from the dataset repository")
+parser.add_argument("--output_folder", type=str, required=True,
                     help="Root folder path for the cross-validation folds. If this folder exists, it will be removed and created again.")
 
 args = parser.parse_args()
@@ -20,10 +21,6 @@ args = parser.parse_args()
 json_root_folder = args.json_folder
 train_val_folder = args.train_val_folder
 output_folder = args.output_folder
-
-print("json root folder: ", json_root_folder)
-print("train and val folder: ", train_val_folder)
-print("output folder: ", output_folder)
 
 if os.path.isdir(output_folder):
     shutil.rmtree(output_folder)
@@ -74,3 +71,5 @@ for json_folder in json_folders:
             destination_path = os.path.join(current_folder_val_folder, key_value_pair[0], file)
 
             shutil.copyfile(source_path, destination_path)
+
+print("Folds are created!")
