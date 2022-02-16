@@ -20,8 +20,8 @@ parser.add_argument("--target_dir", type=str, required=True,
                     help="train, val, test folders will be created in this folder.")
 parser.add_argument("--published_folder_path", type=str, required=True,
                     help="path of patient_based_classified_images folder.")
-parser.add_argument("--test_set_ratio", type=float, default=0.2,  help="ratio of the test set.")
-parser.add_argument("--val_set_ratio", type=float, default=0.2,  help="ratio of the val set.")
+parser.add_argument("--test_set_ratio", type=float, default=0.2, help="ratio of the test set.")
+parser.add_argument("--val_set_ratio", type=float, default=0.2, help="ratio of the val set.")
 parser.add_argument("--error_ratio", type=float, default=0.15,
                     help="tolerance level for test and validation set ratios.")
 
