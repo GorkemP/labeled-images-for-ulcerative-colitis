@@ -3,7 +3,6 @@
 
 import torch
 import torchvision.transforms as transforms
-import torchvision.models as models
 from torch.utils.tensorboard import SummaryWriter
 
 from dataset.ucmayo4 import UCMayo4
