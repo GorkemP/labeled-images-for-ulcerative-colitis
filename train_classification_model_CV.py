@@ -12,26 +12,64 @@ from utils.metrics import get_mean_sensitivity_specificity, classification_repor
 from utils import provider
 from utils.provider import get_test_results_classification, setup_reproducability, get_dataset_mean_and_std, \
     write_metric_results_to_file, get_batch_size_for_model
+import argparse
 
 setup_reproducability(35)
 
-model_name = "ResNet18"
-batch_size = get_batch_size_for_model(model_name)
-optimizer_name = "Adam"
-use_lrscheduling = True
+parser = argparse.ArgumentParser(description="Arguments for the training.")
 
-learning_rate = 0.0002
-weight_decay = 0
+parser.add_argument("--CV_fold_path", type=str, required=True, help="location of train-val folds and test set.")
+parser.add_argument("--model_name", type=str, default="ResNet18",
+                    choices=["ResNet18", "ResNet50", "VGG16_bn", "DenseNet121", "Inception_v3", "MobileNet_v3_large"],
+                    help="Name of the CNN architecture.")
+parser.add_argument("--optimizer", type=str, choices=["Adam", "SGD"], default="Adam",
+                    help="Name of the optimization function.")
+parser.add_argument("-lr", "--learning_rate", type=float, default=0.0002, help="learning rate.")
+parser.add_argument("-wd", "--weight_decay", type=float, default=0., help="weight decay.")
+parser.add_argument("-est", "--early_stopping_threshold", type=int, default=25,
+                    help="early stopping threshold to terminate training.")
+parser.add_argument("--num_epoch", type=int, default=200, help="Max number of epochs to train.")
+parser.add_argument("--use_lrscheduling", choices=["True", "False"], default="True",
+                    help="if given, training does not use LR scheduling.")
+parser.add_argument("-lrsp", "--LRscheduling_patience", type=int, default=15,
+                    help="learning rate scheduling patience to decrease learning rate.")
+parser.add_argument("-lrsf", "--LRscheduling_factor", type=float, default=0.2,
+                    help="learning rate scheduling scaling factor when decrease learning rate.")
+parser.add_argument("--use_pretrained_weights", choices=["True", "False"], default="True",
+                    help="if True, weights start from pretrained weights on imagenet dataset.")
+parser.add_argument("--enable_wandb", choices=["True", "False"], default="True",
+                    help="if True, logs training details into wandb platform. Wandb settings should be performed before using this option.")
+args = parser.parse_args()
+
+for k, v in vars(args).items():
+    print(k, ":", v)
+
+model_name = args.model_name
+batch_size = get_batch_size_for_model(model_name)
+optimizer_name = args.optimizer
+use_lrscheduling = args.use_lrscheduling == "True"
+
+learning_rate = args.learning_rate
+weight_decay = args.weight_decay
 best_threshold = 0.0001
-num_epoch = 200
+num_epoch = args.num_epoch
 num_worker = 4
-early_stopping_thresh = 25
-lr_scheduler_patience = 10
+early_stopping_thresh = args.early_stopping_threshold
+lr_scheduler_patience = args.LRscheduling_patience
+lrs_factor = args.LRscheduling_factor
 num_classes = 4
 use_multiGPU = False
-enable_wandb = True
 use_weighted_sampler = True
-pretrained_weights = True
+pretrained_weights = args.use_pretrained_weights == "True"
+enable_wandb = args.enable_wandb == "True"
+
+print("\nCreate weights directory for checkpoints!")
+dirName = "weights"
+try:
+    os.makedirs(dirName)
+    print("Directory ", dirName, " Created ")
+except FileExistsError:
+    print("Directory ", dirName, " already exists")
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print("device: ", device)
@@ -190,7 +228,8 @@ def run_experiment(experiment_id: int, train_dir: str, val_dir: str, normalize, 
         raise Exception("Undefined optimizer name")
 
     if use_lrscheduling:
-        scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode="max", factor=0.2, patience=lr_scheduler_patience,
+        scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode="max", factor=lrs_factor,
+                                                   patience=lr_scheduler_patience,
                                                    threshold=best_threshold,
                                                    verbose=False)
 
@@ -237,7 +276,7 @@ if __name__ == "__main__":
     if enable_wandb:
         group_id = wandb.util.generate_id()
 
-    CV_fold_path = "/home/ws2080/Desktop/data/ucmayo4/cross_validation_folds_splitted_test"
+    CV_fold_path = args.CV_fold_path
     CV_fold_folders = [x for x in os.listdir(CV_fold_path) if x.startswith("fold")]
     CV_fold_folders = sorted(CV_fold_folders)
     number_of_experiments = len(CV_fold_folders)
