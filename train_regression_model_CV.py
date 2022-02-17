@@ -20,6 +20,7 @@ setup_reproducability(35)
 parser = argparse.ArgumentParser(description="Arguments for the training.")
 
 parser.add_argument("--CV_fold_path", type=str, required=True, help="location of train-val folds and test set.")
+parser.add_argument("--test_set_path", type=str, required=True, help="location of the test set.")
 parser.add_argument("--model_name", type=str, default="ResNet18",
                     choices=["ResNet18", "ResNet50", "VGG16_bn", "DenseNet121", "Inception_v3", "MobileNet_v3_large"],
                     help="Name of the CNN architecture.")
@@ -331,7 +332,7 @@ if __name__ == "__main__":
 
         train_dir = os.path.join(CV_fold_path, CV_fold_folders[i], "train")
         val_dir = os.path.join(CV_fold_path, CV_fold_folders[i], "val")
-        test_dir = os.path.join(CV_fold_path, "test")
+        test_dir = args.test_set_path
 
         channel_means, channel_stds = get_dataset_mean_and_std(train_dir)
         normalize = transforms.Normalize(mean=channel_means,
