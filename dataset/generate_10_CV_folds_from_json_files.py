@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser(description="This files generates Cross-validat
 
 parser.add_argument("--json_folder", type=str, required=True, help="Root folder path of the json files")
 parser.add_argument("--train_val_folder", type=str, required=True,
-                    help="Path of train folder as downloaded from the dataset repository")
+                    help="Path of train_and_validation_sets folder as downloaded from the dataset repository")
 parser.add_argument("--output_folder", type=str, required=True,
                     help="Root folder path for the cross-validation folds. If this folder exists, it will be removed and created again.")
 
