@@ -27,7 +27,7 @@ parser.add_argument("--published_folder_path", type=str, required=True,
                     help="path of patient_based_classified_images folder.")
 parser.add_argument("--fold_num", type=int, default=10, help="Number of folds.")
 parser.add_argument("--test_set_ratio", type=float, default=0.2, help="ratio of the test set.")
-parser.add_argument("--test_set_error_ratio", type=float, default=0.1, help="tolerance of the test set ratio.")
+parser.add_argument("--test_set_error_ratio", type=float, default=0.15, help="tolerance of the test set ratio.")
 parser.add_argument("--error_ratio", type=float, default=0.15,
                     help="tolerance level for validation set ratios.")
 
@@ -178,6 +178,6 @@ for fold in os.scandir(CV_folder_path):
 
             print(
                     class_name + ": " + " val set ratio: {:3.1f}".format(
-                        (val_size / total) * 100) + " => total: " + str(
+                            (val_size / total) * 100) + " => total: " + str(
                             total))
         print("All images: " + str(total_classes))
