@@ -39,7 +39,7 @@ parser.add_argument("-lrsf", "--LRscheduling_factor", type=float, default=0.2,
 parser.add_argument("--use_pretrained_weights", choices=["True", "False"], default="True",
                     help="if True, weights start from pretrained weights on imagenet dataset.")
 parser.add_argument("--enable_wandb", choices=["True", "False"], default="True",
-                    help="if True, logs training details into wandb platform. Wandb settings should be performed before using this option.")
+                    help="if True, logs training details into wandb platform. Wandb settings in the OS should be performed before using this option.")
 args = parser.parse_args()
 
 for k, v in vars(args).items():
