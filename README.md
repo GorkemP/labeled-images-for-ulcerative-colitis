@@ -6,9 +6,10 @@ In this repository you will find scripts to process and train LIMUC dataset.
 
 1. Download the LIMUC dataset from [here]().
 2. Unzip downloaded files.
-3. Set up [wandb](https://wandb.ai/) platform on your machine (host OS).
-4. Run the desired script in `dataset/` folder to create train-val-test sets for the target task (see below).
-5. Run the training script for the target task.
+3. Install conda virtual environment with `conda env create -f environment.yml` and activate the environment (see [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)).
+4. Set up [wandb](https://wandb.ai/) platform on your machine (host OS).
+5. Run the desired script in `dataset/` folder to create train-val-test sets for the target task (see below).
+6. Run the training script for the target task.
 
 
 ##  Which script in the dataset folder should be run?
