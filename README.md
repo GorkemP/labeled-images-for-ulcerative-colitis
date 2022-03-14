@@ -1,5 +1,7 @@
 # LIMUC (Labeled Images for Ulcerative Colitis) Dataset repository
 
+![Alt text](./images/sample_images.png)
+
 In this repository you will find scripts to process and train LIMUC dataset.
 
 ## How to use this repository?
