@@ -6,7 +6,7 @@ In this repository you will find scripts to process and train LIMUC dataset.
 
 ## How to use this repository?
 
-1. Download the LIMUC dataset from [here]().
+1. Download the LIMUC dataset from [here](https://zenodo.org/record/5827695#.Yi8GJ3pByUk).
 2. Unzip downloaded files.
 3. Install conda virtual environment with `conda env create -f environment.yml` and activate the environment (see [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)).
 4. Set up [wandb](https://wandb.ai/) platform on your machine (host OS).
