@@ -1,4 +1,4 @@
-# LIMUC (Labeled Images for Ulcerative Colitis) Dataset repository
+# LIMUC (Labeled Images for Ulcerative Colitis) Dataset
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5827695.svg)](https://doi.org/10.5281/zenodo.5827695)
 
 ![Alt text](./images/sample_images.png)
@@ -83,10 +83,10 @@ python split_test_set_and_n_fold_rest.py
 #### For citation please use the following BibTeX entry:
 
 ```BibTeX
-@dataset{ilkay_ergenc_2022_5827695,
-  author       = {Ilkay Ergenc and
+@dataset{gorkem_polat_2022_5827695,
+  author       = {Gorkem Polat and
                   Haluk Tarik Kani and
-                  Gorkem Polat and
+                  Ilkay Ergenc and
                   Yesim Ozen Alahdab and
                   Alptekin Temizel and
                   Ozlen Atug},
