@@ -46,7 +46,7 @@ python inference_classification_based_model.py
 --checkpoint="weights/best_ResNet18.pth.tar"
 ```
 
-### 2. If you want to train your model on Cross-Validation setting as described in the LIMUC paper:
+### 2. If you want to train your model on Cross-Validation setting as described in the LIMUC paper (coming soon):
 
 2.1 After downloading the dataset, run `generate_10_CV_folds_from_json_files.py`. This script will form the same folds as used in the LIMUC paper.
 ```
