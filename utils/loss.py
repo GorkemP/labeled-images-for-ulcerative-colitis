@@ -8,7 +8,10 @@ from torch import Tensor
 class ClassDistanceWeightedLoss(torch.nn.Module):
     """
     Instead of calculating the confidence of true class, this class takes into account the confidences of
-    non-ground-truth classes. Scales them with the neighboring distance. Paper: https://arxiv.org/abs/2202.05167
+    non-ground-truth classes and scales them with the neighboring distance.
+    Paper: "Class Distance Weighted Cross-Entropy Loss for Ulcerative Colitis Severity Estimation" (https://arxiv.org/abs/2202.05167)
+    It is advised to experiment with different power terms. When searching for new power term, linearly increasing
+    it works the best due to its exponential effect.
 
     """
 
