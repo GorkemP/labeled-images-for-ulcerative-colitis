@@ -88,7 +88,7 @@ if enable_wandb:
     config.num_worker = num_worker
     config.optimizer = optimizer_name
 
-device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print("device: ", device)
 
 train_dir = args.train_dir
