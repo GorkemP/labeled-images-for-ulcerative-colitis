@@ -38,6 +38,15 @@ folder_class_names = sorted(os.listdir(os.path.join(published_folder_path, all_f
 
 pass_state = False
 
+# Remove all folders inside patient Mayo folders, there should be only images
+for folder in all_folders:
+    for folder_class_name in folder_class_names:
+        class_path = os.path.join(published_folder_path, folder, folder_class_name)
+        for item in os.scandir(class_path):
+            if item.is_dir():
+                print("removing redundant folder:", item.path)
+                shutil.rmtree(item.path)
+
 while not pass_state:
     pass_state = True
 
