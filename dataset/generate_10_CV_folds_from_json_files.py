@@ -6,7 +6,7 @@ import os
 import shutil
 import json
 
-parser = argparse.ArgumentParser(description="This files generates Cross-validation folds from \n"
+parser = argparse.ArgumentParser(description="This file generates Cross-validation folds from \n"
                                              ".json files. Use it to make objective evaluations \n"
                                              "and fair comparisons with the results in the dataset.")
 
