@@ -50,7 +50,7 @@ python inference_classification_based_model.py
 
 2.1 After downloading the dataset, run `generate_10_CV_folds_from_json_files.py`. This script will form the same folds as used in the LIMUC paper.
 ```
-python generate_10_cv_folds_from_json_files.py
+python generate_10_CV_folds_from_json_files.py
 --json_folder "path/to/cross_validation_folds_train_val_info"
 --train_val_folder "path/to/train_and_validation_sets"
 --output_folder "path/to/cross validation folds"

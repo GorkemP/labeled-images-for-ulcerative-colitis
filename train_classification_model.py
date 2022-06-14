@@ -31,7 +31,7 @@ parser.add_argument("-est", "--early_stopping_threshold", type=int, default=25,
                     help="early stopping threshold to terminate training.")
 parser.add_argument("--num_epoch", type=int, default=200, help="Max number of epochs to train.")
 parser.add_argument("--use_lrscheduling", choices=["True", "False"], default="True",
-                    help="if given, training does not use LR scheduling.")
+                    help="if False, training does not use LR scheduling.")
 parser.add_argument("-lrsp", "--LRscheduling_patience", type=int, default=15,
                     help="learning rate scheduling patience to decrease learning rate.")
 parser.add_argument("-lrsf", "--LRscheduling_factor", type=float, default=0.2,
