@@ -99,15 +99,6 @@ python split_test_set_and_n_fold_rest.py
   doi          = {10.5281/zenodo.5827695},
   url          = {https://doi.org/10.5281/zenodo.5827695}
 }
-
-@misc{https://doi.org/10.48550/arxiv.2202.05167,
-  doi = {10.48550/ARXIV.2202.05167},  
-  url = {https://arxiv.org/abs/2202.05167},  
-  author = {Polat, Gorkem and Ergenc, Ilkay and Kani, Haluk Tarik and Alahdab, Yesim Ozen and Atug, Ozlen and Temizel, Alptekin},
-  title = {Class Distance Weighted Cross-Entropy Loss for Ulcerative Colitis Severity Estimation},
-  publisher = {arXiv},
-  year = {2022}
-}
 ```
 
 
