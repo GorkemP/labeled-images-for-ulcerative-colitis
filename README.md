@@ -80,8 +80,27 @@ python split_test_set_and_n_fold_rest.py
 3.2 Run `train_classification_model_CV.py` or `train_regression_model_CV.py` (same as 2.2).
 
 ---
-#### For citation please use the following BibTeX entry:
+#### For citation please use the following BibTeX entries:
+#### For the article
 
+```BibTeX
+@article{10.1093/ibd/izac226,
+    author = {Polat, Gorkem and Kani, Haluk Tarik and Ergenc, Ilkay and Ozen Alahdab, Yesim and Temizel, Alptekin and Atug, Ozlen},
+    title = "{Improving the Computer-Aided Estimation of Ulcerative Colitis Severity According to Mayo Endoscopic Score by Using Regression-Based Deep Learning}",
+    journal = {Inflammatory Bowel Diseases},
+    year = {2022},
+    month = {11},
+    abstract = "{ Assessment of endoscopic activity in ulcerative colitis (UC) is important for treatment decisions and monitoring disease progress. However, substantial inter- and intraobserver variability in grading impairs the assessment. Our aim was to develop a computer-aided diagnosis system using deep learning to reduce subjectivity and improve the reliability of the assessment.The cohort comprises 11 276 images from 564 patients who underwent colonoscopy for UC. We propose a regression-based deep learning approach for the endoscopic evaluation of UC according to the Mayo endoscopic score (MES). Five state-of-the-art convolutional neural network (CNN) architectures were used for the performance measurements and comparisons. Ten-fold cross-validation was used to train the models and objectively benchmark them. Model performances were assessed using quadratic weighted kappa and macro F1 scores for full Mayo score classification and kappa statistics and F1 score for remission classification.Five classification-based CNNs used in the study were in excellent agreement with the expert annotations for all Mayo subscores and remission classification according to the kappa statistics. When the proposed regression-based approach was used, (1) the performance of most of the models statistically significantly increased and (2) the same model trained on different cross-validation folds produced more robust results on the test set in terms of deviation between different folds.Comprehensive experimental evaluations show that commonly used classification-based CNN architectures have successful performance in evaluating endoscopic disease activity of UC. Integration of domain knowledge into these architectures further increases performance and robustness, accelerating their translation into clinical use.}",
+    issn = {1078-0998},
+    doi = {10.1093/ibd/izac226},
+    url = {https://doi.org/10.1093/ibd/izac226},
+    note = {izac226},
+    eprint = {https://academic.oup.com/ibdjournal/advance-article-pdf/doi/10.1093/ibd/izac226/47071389/izac226.pdf},
+}
+```
+
+
+#### For the dataset
 ```BibTeX
 @dataset{gorkem_polat_2022_5827695,
   author       = {Gorkem Polat and
