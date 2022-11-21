@@ -7,12 +7,13 @@ In this repository you will find scripts to process and train LIMUC dataset.
 
 ## How to use this repository?
 
-1. Download the LIMUC dataset from [here](https://zenodo.org/record/5827695#.Yi8GJ3pByUk).
-2. Unzip downloaded files.
-3. Install conda virtual environment with `conda env create -f environment.yml` and activate the environment (see [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)).
-4. Set up [wandb](https://wandb.ai/) platform on your machine (host OS).
-5. Run the desired script in `dataset/` folder to create train-val-test sets for the target task (see below).
-6. Run the training script for the target task.
+1. Read the main [article](https://academic.oup.com/ibdjournal/advance-article-abstract/doi/10.1093/ibd/izac226/6830946?login=false) related to the LIMUC dataset to get how this dataset is curated, used, and what are the performance results.
+2. Download the LIMUC dataset from [here](https://zenodo.org/record/5827695#.Yi8GJ3pByUk).
+3. Unzip downloaded files.
+4. Install conda virtual environment with `conda env create -f environment.yml` and activate the environment (see [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)).
+5. Set up [wandb](https://wandb.ai/) platform on your machine (host OS).
+6. Run the desired script in `dataset/` folder to create train-val-test sets for the target task (see below).
+7. Run the training script for the target task.
 
 
 ##  Which script in the dataset folder should be run?
@@ -46,7 +47,7 @@ python inference_classification_based_model.py
 --checkpoint="weights/best_ResNet18.pth.tar"
 ```
 
-### 2. If you want to train your model on Cross-Validation setting as described in the LIMUC paper (coming soon):
+### 2. If you want to train your model on Cross-Validation setting as described in the LIMUC paper:
 
 2.1 After downloading the dataset, run `generate_10_CV_folds_from_json_files.py`. This script will form the same folds as used in the LIMUC paper.
 ```
@@ -98,7 +99,6 @@ python split_test_set_and_n_fold_rest.py
     eprint = {https://academic.oup.com/ibdjournal/advance-article-pdf/doi/10.1093/ibd/izac226/47071389/izac226.pdf},
 }
 ```
-
 
 #### For the dataset
 ```BibTeX
