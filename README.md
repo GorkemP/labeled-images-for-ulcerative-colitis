@@ -3,7 +3,7 @@
 
 ![Alt text](./images/sample_images.png)
 
-In this repository you will find scripts to process and train LIMUC dataset.
+In this repository, you will find scripts to process and train the LIMUC dataset.
 
 ## How to use this repository?
 
@@ -18,9 +18,9 @@ In this repository you will find scripts to process and train LIMUC dataset.
 
 ##  Which script in the dataset folder should be run?
 
-### 1. If you want to train your model on a single train-val sets and get the performance on test set:
+### 1. If you want to train your model on a single train-val set and get the performance on a test set:
 
-1.1 After downloading the dataset, run `split_train_val_test.py` on `patient_based_classified_images` to create different sets that are splited by patient-level.  
+1.1 After downloading the dataset, run `split_train_val_test.py` on `patient_based_classified_images` to create different sets split by patient-level.  
 
 ```
 python split_train_val_test.py 
@@ -37,7 +37,7 @@ python train_classification_model.py
 --val_dir "path/to/validation/folder"
 ```
 
-1.3 After the training finishes, run `inference_classification_based_model.py` or `inference_regression_based_model.py` indicating path to train/test sets and model weights (checkpoints).  
+1.3 After the training finishes, run `inference_classification_based_model.py` or `inference_regression_based_model.py`, indicating path to train/test sets and model weights (checkpoints).  
 
 ```
 python inference_classification_based_model.py 
@@ -47,7 +47,7 @@ python inference_classification_based_model.py
 --checkpoint="weights/best_ResNet18.pth.tar"
 ```
 
-### 2. If you want to train your model on Cross-Validation setting as described in the LIMUC paper:
+### 2. If you want to train your model on the Cross-Validation setting as described in the LIMUC paper:
 
 2.1 After downloading the dataset, run `generate_10_CV_folds_from_json_files.py`. This script will form the same folds as used in the LIMUC paper.
 ```
@@ -67,9 +67,9 @@ python train_classification_model_CV.py
 
 ### 3. If you want to train your model on a different CV setting (e.g., different test set ratio or # of CV folds):
 
-3.1 After downloading the dataset, run `split_test_set_and_n_fold_rest.py` by indicating test set ratio and # of CV folds.
+3.1 After downloading the dataset, run `split_test_set_and_n_fold_rest.py` by indicating the test set ratio and # of CV folds.
 
-The following code splits 20% of the images as test set and creates 5 folds for CV from the rest 80% (each fold has 64% train, 16% val).
+The following code splits 20% of the images as a test set and creates 5-folds for CV from the rest 80% (each fold has 64% train, 16% val).
 ```
 python split_test_set_and_n_fold_rest.py
 --CV_folder_path "path/to/target/folder"
@@ -100,6 +100,17 @@ python split_test_set_and_n_fold_rest.py
 }
 ```
 
+```BibTeX
+@inproceedings{polat2022class,
+  title={Class distance weighted cross-entropy loss for ulcerative colitis severity estimation},
+  author={Polat, Gorkem and Ergenc, Ilkay and Kani, Haluk Tarik and Alahdab, Yesim Ozen and Atug, Ozlen and Temizel, Alptekin},
+  booktitle={Annual Conference on Medical Image Understanding and Analysis},
+  pages={157--171},
+  year={2022},
+  organization={Springer}
+}
+```
+
 #### For the dataset
 ```BibTeX
 @dataset{gorkem_polat_2022_5827695,
@@ -124,6 +135,6 @@ python split_test_set_and_n_fold_rest.py
 ## Important Notes
 
 Since each patient has several images, when performing train-val-test splitting, it is highly
-recommended to perform it in patient-level because similar images may go in different sets resulting in high val/test set performance.
+recommended performing it at patient-level because similar images may go in different sets, resulting in high val/test set performance.
 Therefore, use the dataset splitting scripts in this repository.
 
